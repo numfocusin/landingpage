@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Insights | Coming Soon</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text-dark: #111827;
+            --text-light: #4b5563;
+            --accent: #2563eb;
+            --border: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- DATA ANIMATIONS --- */
+        
+        /* Floating "Data Points" Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent);
+            z-index: -1;
+        }
+
+        @keyframes pulseData {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.5); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+
+        .data-blob {
+            position: absolute;
+            background: var(--accent);
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.1;
+            z-index: -1;
+            animation: pulseData 8s infinite ease-in-out;
+        }
+
+        /* Hero Section */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .badge {
+            background: #f3f4f6;
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        /* Loading Bar Animation in Badge */
+        .badge::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 2px;
+            width: 50%;
+            background: var(--accent);
+            animation: loadingBar 2s infinite linear;
+        }
+
+        @keyframes loadingBar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            /* Subtle slide-up animation */
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .description {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mission Section */
+        .mission {
+            background: #fafafa;
+            border-top: 1px solid var(--border);
+            padding: 6rem 2rem;
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mission h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Mini-Bar Chart Decoration */
+        .mission h2::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: repeating-linear-gradient(90deg, var(--accent), var(--accent) 4px, transparent 4px, transparent 8px);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="data-blob" style="width: 300px; height: 300px; top: 10%; right: 10%;"></div>
+    <div class="data-blob" style="width: 200px; height: 200px; bottom: 20%; left: 5%; animation-delay: -4s;"></div>
+
+    <main class="hero">
+        <span class="badge">Processing Insights...</span>
+        <h1>Visualizing the stories behind the numbers.</h1>
+        <p class="description">
+            A minimalist space dedicated to high-fidelity data visualizations and regional trends.
+        </p>
+    </main>
+</body>
+</html>
